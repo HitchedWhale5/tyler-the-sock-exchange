@@ -103,12 +103,12 @@ function App() {
                 } />
                 <Route path="/Login" element={<LoginForm />} />
               </Routes>
-              <footer className={import.meta.env.VITE_ENVIRONMENT === "development" ? "bg-yellow" : import.meta.env.VITE_ENVIRONMENT === "production" ? "bg-green" : ""}>
-                <div><strong>{import.meta.env.VITE_ENVIRONMENT.toUpperCase()}</strong></div>
-              </footer>
             </div>
           </div>
         </main>
+        <footer className={import.meta.env.VITE_ENVIRONMENT === "development" ? "bg-yellow" : import.meta.env.VITE_ENVIRONMENT === "production" ? "bg-green" : ""}>
+          <div><strong>{import.meta.env.VITE_ENVIRONMENT.toUpperCase()}</strong></div>
+        </footer>
       </Router>
     </>
   )
