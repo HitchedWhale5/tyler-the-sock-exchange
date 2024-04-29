@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Search from "./components/Search";
 import Promotion from "./components/Promotion";
 import Home from "./components/Home";
+import RequireAuth from "./components/RequireAuth";
 import {
   BrowserRouter as Router,
   Route,
@@ -15,6 +16,7 @@ import {
 import About from "./components/About";
 import Featured from "./components/Featured";
 import AddSock from "./components/AddSock";
+import LoginForm from "./components/LoginForm";
 
 function App() {
   const [data, setData] = useState([]);
@@ -94,7 +96,12 @@ function App() {
               <Routes>
                 <Route exact path="/" element={<Home data={data} handleDelete={handleDelete} page={page} setPage={setPage} />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/add" element={<AddSock />} />
+                <Route path="/add" element={
+                  <RequireAuth>
+                    <AddSock />
+                  </RequireAuth>
+                } />
+                <Route path="/Login" element={<LoginForm />} />
               </Routes>
               <footer className={import.meta.env.VITE_ENVIRONMENT === "development" ? "bg-yellow" : import.meta.env.VITE_ENVIRONMENT === "production" ? "bg-green" : ""}>
                 <div><strong>{import.meta.env.VITE_ENVIRONMENT.toUpperCase()}</strong></div>
