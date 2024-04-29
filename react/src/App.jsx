@@ -17,6 +17,7 @@ import About from "./components/About";
 import Featured from "./components/Featured";
 import AddSock from "./components/AddSock";
 import LoginForm from "./components/LoginForm";
+import { AuthProvider } from "./hooks/AuthContext";
 
 function App() {
   const [data, setData] = useState([]);
@@ -93,16 +94,18 @@ function App() {
             <div className="row">
               <Featured data={promo_data} />
               <hr />
-              <Routes>
-                <Route exact path="/" element={<Home data={data} handleDelete={handleDelete} page={page} setPage={setPage} />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/add" element={
-                  <RequireAuth>
-                    <AddSock />
-                  </RequireAuth>
-                } />
-                <Route path="/Login" element={<LoginForm />} />
-              </Routes>
+              <AuthProvider>
+                <Routes>
+                  <Route exact path="/" element={<Home data={data} handleDelete={handleDelete} page={page} setPage={setPage} />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/add" element={
+                    <RequireAuth>
+                      <AddSock />
+                    </RequireAuth>
+                  } />
+                  <Route path="/Login" element={<LoginForm />} />
+                </Routes>
+              </AuthProvider>
             </div>
           </div>
         </main>

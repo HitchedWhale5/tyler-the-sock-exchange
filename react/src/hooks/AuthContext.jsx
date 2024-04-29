@@ -17,8 +17,11 @@ export const AuthProvider = ({ children }) => {
                 body: JSON.stringify({ username, password }),
             });
             const data = await response.json();
-            if (data.user) {
-                setUser(data.user);
+            if (data.uid) {
+                setUser({
+                    username,
+                    uid: data.uid // Storing the uid returned from the server
+                });
             } else {
                 throw new Error(data.message || 'Login failed');
             }
